@@ -15,6 +15,7 @@ const routes: Routes = [
   children:[
 
     //crud-urls
+    //
 
     {path:'new-hero',component:NewPageComponent},
     {path:'search',component:SearchPageComponent},

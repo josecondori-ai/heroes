@@ -19,9 +19,22 @@
             <mat-divider></mat-divider>
 
     <mat-card-actions>
-                <button mat-button mat-raised color="primary">
+                <button 
+                mat-button 
+                mat-raised 
+                color="primary"
+                [routerLink]="['/heroes/edit',hero.id]">
                     <mat-icon>edit</mat-icon>
                     Editar</button>
+
+            <span class="spacer"></span>
+            <button 
+            mat-button 
+            mat-raised 
+          
+            [routerLink]="['/heroes',hero.id]">
+                <mat-icon>more_horiz</mat-icon>
+                Mas</button>
     </mat-card-actions>
 
 
