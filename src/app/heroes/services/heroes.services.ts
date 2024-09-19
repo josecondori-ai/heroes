@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, Observable, of, pipe ,map} from 'rxjs';
 import { Hero } from '../interfaces/hero.interfaces';
 import { enviroments } from '../../../enviroments/enviroment';
 
@@ -25,19 +25,23 @@ export class HeroresServices {
 
 
 
-    // addHero():Observable<Hero[]>{
-    //     return this.http.get<Hero[]>(`${this.baserUrl}/heroes`)
-    //     //http://localhost:3000/heroes
-    // }
+    addHero(hero:Hero):Observable<Hero>{
+        return this.http.post<Hero>(`${this.baserUrl}/heroes`,hero)
+        //http://localhost:3000/heroes/wolverine
+    }
 
-    // updateHero():Observable<Hero[]>{
-    //     return this.http.get<Hero[]>(`${this.baserUrl}/heroes`)
-    //     //http://localhost:3000/heroes
-    // }
+    updateHero(hero:Hero):Observable<Hero>{
+        return this.http.patch<Hero>(`${this.baserUrl}/heroes/${hero.id}`,hero)
+        //http://localhost:3000/heroes/wolverine =>    hero=> leopardo
+    }
 
-    // deleteHeroe():Observable<Hero[]>{
-    //     return this.http.get<Hero[]>(`${this.baserUrl}/heroes`)
-    //     //http://localhost:3000/heroes
-    // }
+    deleteHeroe(id:string):Observable<boolean>{
+        return this.http.delete(`${this.baserUrl}/heroes/${id}`)
+        .pipe(
+            catchError(error=> of (false)),
+            map(resp=>true)
+        )
+        //http://localhost:3000/heroes
+    }
 
 }
